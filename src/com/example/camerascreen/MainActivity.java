@@ -69,6 +69,9 @@ public class MainActivity extends Activity {
         if (Environment.getExternalStorageDirectory().exists()) {
             File sdPath = Environment.getExternalStorageDirectory();
             sdPath = new File(sdPath.getAbsolutePath() + "/" + DIR_SD + "/" + FILENAME_SD);
+            if (!sdPath.exists()) {
+                sdPath.mkdirs();
+            }
             try (Scanner in = new Scanner(sdPath)) {
                 temp = in.nextInt();
             } catch (IOException e) {
@@ -83,6 +86,9 @@ public class MainActivity extends Activity {
         int temp = 0;
         File sdPath = Environment.getExternalStorageDirectory();
         sdPath = new File(sdPath.getAbsolutePath() + "/" + DIR_SD + "/" + FILENAME_SD_BUT);
+        if (!sdPath.exists()) {
+            sdPath.mkdirs();
+        }
         try (Scanner in = new Scanner(sdPath)) {
             temp = in.nextInt();
         } catch (IOException e) {
@@ -532,7 +538,7 @@ public class MainActivity extends Activity {
                             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.ROOT).format(new Date());
                             File pictures = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
                             if (!pictures.exists()) {
-//                                pictures.mkdirs();
+                                pictures.mkdirs();
                                 if (!pictures.mkdirs()) {
                                     Log.d("picture", "failed to create directory");
                                 }
@@ -746,7 +752,7 @@ public class MainActivity extends Activity {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.ROOT).format(new Date());
         File pictures = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         if (!pictures.exists()) {
-//            pictures.mkdirs();
+            pictures.mkdirs();
             if (!pictures.mkdirs()) {
                 Log.d("picture", "failed to create directory");
             }
